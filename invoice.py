@@ -1,8 +1,7 @@
 import streamlit as st
 import doctrModels as dm
 import LineChecker as lc
-from doctr.io import DocumentFile
-from doctr.models import ocr_predictor
+
 
 import os
 import re 
