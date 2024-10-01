@@ -2,8 +2,6 @@ import doctrModels as dm
 import LineChecker as lc
 import os
 import re
-from doctr.io import DocumentFile
-from doctr.models import ocr_predictor
 
 from pdf2image import convert_from_path
 
