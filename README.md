@@ -1,55 +1,53 @@
-**Invoice Data Extraction App**
+# 🧾 OCR Model Extraction – Intelligent Invoice & Document Text Recognition
 
-This Streamlit application extracts and validates data from an invoice image. Users can manually enter invoice details such as Invoice Number, Date, Supplier, Buyer, and Amount, and upload an image of the invoice. The application will extract and validate the fields from the image using Optical Character Recognition (OCR) and compare the extracted data with user inputs.
+This project focuses on extracting structured information from invoices and documents using OCR (Optical Character Recognition) techniques. It compares multiple OCR models such as **Doctr**, **EasyOCR**, **Tesseract**, and **PaddleOCR** to improve text extraction accuracy and layout understanding, specifically in complex domains like healthcare billing and insurance claims.
 
-**Features**
+---
 
-Manual Input: Users can input the invoice number, date, supplier, buyer, amount, supplier state, and buyer state.
+## 🚀 Key Features
 
-Image Upload: Upload an image of an invoice for processing.
+- 📄 Extracts and classifies invoice fields (e.g., **Invoice Number**, **Date**, **Buyer GSTIN**, **Supplier GSTIN**, etc.)
+- 🔍 Uses **Doctr** for structured data extraction and JSON outputs
+- 🔁 Model comparison for OCR performance across diverse formats
+- 🧠 Context-aware logic for field mapping using Python
+- ✅ Verification module to validate the output against input data
 
-Field Validation: The app checks if the manually inputted invoice fields match the data extracted from the invoice image.
+---
 
-OCR Processing: Utilizes the doctrModels and LineChecker modules to extract and verify text from the uploaded invoice image.
+## 🧰 Tech Stack
 
-**How It Works**
+- Python
+- EasyOCR
+- Doctr (by Mindee)
+- PaddleOCR
+- Tesseract
+- Streamlit (for optional web deployment)
+- OpenCV, NumPy, Regex
 
-Input Fields: The user enters information such as Invoice Number, Date, Supplier, Buyer, Amount, Supplier State, and Buyer State.
+---
 
-Image Upload: The user uploads an image of the invoice.
+## 🧠 Project Overview
 
-Data Validation: Once all fields are entered and the image is uploaded, clicking "Process" extracts data from the invoice image, and the app checks if it matches the manually inputted data.
+The goal of this project is to **automate document and invoice analysis** using a combination of OCR engines and logic-based field extractors. This is particularly useful in:
 
-Word Pooling: The app uses multiple variants of common invoice fields (e.g., "Invoice Number," "Inv #") to improve the accuracy of the validation process.
+- **Healthcare billing**
+- **Insurance claims**
+- **GST-based invoice validation**
 
-**Prerequisites**
+Each model is benchmarked for its ability to extract structured data from noisy or complex documents.
 
-To run this project, you need to have Python and Streamlit installed.
+---
 
-**Code Breakdown**
+## 🖼️ Sample Input/Output
 
-invoice.py: This is the main file containing the Streamlit interface and logic.
+_Example invoice image → JSON output_
 
-Fields for manually entering invoice data (Invoice Number, Date, Supplier, Buyer, Amount, etc.).
+```json
+{
+  "Invoice Number": "INV2024-001",
+  "Date": "2024-08-10",
+  "Buyer GSTIN": "33AAAAA0000A1Z5",
+  "Supplier GSTIN": "29BBBBB1111B2Z6",
+  "Total Amount": "₹12,000.00"
+}
 
-An image uploader for uploading an invoice image.
-
-A processing function that extracts text from the image using doctrModels and LineChecker, and matches the text with user inputs.
-
-A word-pooling system for matching variants of invoice fields like "Invoice Number" and "Total Amount."
-
-**Modules:**
-
-doctrModels: Used for handling OCR (Optical Character Recognition) from the uploaded invoice image.
-
-LineChecker: Used to validate and extract specific lines from the image text.
-
-**Helper Function:**
-
-check_for_variants(file_path, variants_list, data): This function checks if any variant of the manually entered data matches the extracted text from the image file. It performs number extraction and comparison for numeric fields like Invoice Number and Amount.
-
-**Important Notes**
-
-The application relies on the clarity of the uploaded invoice image. Poor image quality may lead to inaccurate OCR results.
-
-The file temp_image.jpg is used as a temporary file to store the uploaded image for processing.
